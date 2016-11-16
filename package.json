@@ -1,0 +1,30 @@
+{
+  "name": "lyft-node-starter",
+  "version": "0.0.1",
+  "description": "A starter kit using the Lyft Node API wrapper.",
+  "main": "app.js",
+  "dependencies": {
+    "babel-eslint": "^7.1.0",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^4.0.0-alpha.5",
+    "dotenv": "^2.0.0",
+    "eslint": "^3.10.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "install": "^0.8.2",
+    "nedb-session-store": "^1.1.1",
+    "node-lyft": "^0.0.1",
+    "node-sass-middleware": "^0.10.0",
+    "nodemon": "^1.11.0",
+    "npm": "^3.10.9",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-beta6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

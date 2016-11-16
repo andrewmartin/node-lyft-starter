@@ -1,0 +1,21 @@
+{
+  "name": "lyft-node-starter",
+  "description": "A starter kit using the Lyft Node API wrapper.",
+  "main": "app.js",
+  "authors": [
+    "Andrew Martin <andrew@believelabs.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "4.0.0-alpha.5"
+  }
+}
