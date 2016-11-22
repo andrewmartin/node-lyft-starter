@@ -26,6 +26,40 @@ $brand-inverse:             $gray-dark;
 
 @import '../components/bootstrap/scss/bootstrap';
 
+.json-pretty{
+  border-radius: 10px;
+  line-height: 1.3;
+  color: $gray;
+  background: $charcoal;
+  padding: 15px;
+}
+
+.json-pretty .json-key {
+  color: $pink;
+}
+
+.json-pretty .json-value {
+  color: $gray-light;
+}
+
+.json-pretty .json-string {
+  color: $gray-light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+}
+
+.page-container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 85%;
+}
+
 .bg-faded {
   background: $bone;
 }
@@ -68,12 +102,29 @@ nav.navbar {
 }
 
 .card-response {
-  background: $gray-lighter;
 
   &__content {
-    @extend pre;
     margin: 0;
   }
+
+  &__title {
+    @extend .clearfix;
+    margin-bottom: 15px;
+  }
+
+  &__button {
+    @extend .btn;
+    @extend .btn-sm;
+    @extend .btn-secondary;
+    float: right;
+  }
+}
+
+.tip {
+  padding: 5px;
+  color: $gray-light;
+  font-size: 12px;
+  line-height: 17px;
 }
 //
 // .card {
@@ -96,8 +147,35 @@ nav.navbar {
   float: left;
   width: 100%;
   clear: both;
+
+  input {
+    @extend .form-control;
+  }
 }
 
-.lower-row {
+.api-module {
+  @extend .clearfix;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: $gray-lightest;
+  &__title {
+    @extend .clearfix;
+    margin: 0 0 20px;
+    a {
+      @extend .btn;
+      @extend .btn-sm;
+      @extend .btn-primary;
+      float: right;
+    }
+  }
+}
 
+.form-inline__meta {
+  padding-bottom: 15px;
+  strong {
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 5px;
+    background: $gray-lighter;
+  }
 }

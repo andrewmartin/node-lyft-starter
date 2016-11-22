@@ -1,13 +1,55 @@
-var config = require('../../../config');
+const config = require('../../../config');
+
+const queryObject = (body) => {
+  var qs = {};
+  Object.keys(body).forEach((key) => {
+    qs[key] = body[key]
+  });
+  return qs;
+};
 
 module.exports = {
-  getRideTypes: function(req, res, next) {
-    lyft.rideTypes.get(req.body.lat, req.body.lng).then(function(data) {
-      res.json(data)
+  getRideTypes(req, res, next) {
+    var qs = queryObject(req.body);
+    lyft.rideTypes.get(qs).then((data) => {
+      res.json(data);
+      next();
+    }).catch((err) => {
+      res.json(err);
       next();
     });
-  }
-}
+  },
+  getCost(req, res, next) {
+    var qs = queryObject(req.body);
+    lyft.cost.get(qs).then((data) => {
+      res.json(data);
+      next();
+    }).catch((err) => {
+      res.json(err);
+      next();
+    });;
+  },
+  getNearbyDrivers(req, res, next) {
+    var qs = queryObject(req.body);
+    lyft.nearbyDrivers.get(qs).then((data) => {
+      res.json(data);
+      next();
+    }).catch((err) => {
+      res.json(err);
+      next();
+    });;
+  },
+  getETA(req, res, next) {
+    var qs = queryObject(req.body);
+    lyft.eta.get(qs).then((data) => {
+      res.json(data);
+      next();
+    }).catch((err) => {
+      res.json(err);
+      next();
+    });;
+  },
+};
 //
 // exports.getDrivers = function (req, res, next) {
 //   requestWithBearerToken(res, {

@@ -1,5 +1,9 @@
 module.exports = {
   "extends": "airbnb",
+  "globals": {
+    "window": true,
+    "fetch": true
+  },
   "rules": {
     "react/prefer-stateless-function": [0],
     "import/extensions": [0],

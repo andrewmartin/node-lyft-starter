@@ -14,10 +14,7 @@ lyft = new Lyft();
 var config = require('./config');
 
 /* controllers */
-// var apiController       = require('./controllers/api');
 var apiLyftController   = require('./controllers/api/lyft');
-// var oauthLyftController = require('./controllers/oauth/lyft');
-
 
 /* express configuration */
 app = express();
@@ -73,6 +70,9 @@ app.use(function (req, res, next) {
 
 /* express routing: lyft api */
 app.post('/api/lyft/ridetypes', apiLyftController.getRideTypes);
+app.post('/api/lyft/cost', apiLyftController.getCost);
+app.post('/api/lyft/nearby-drivers', apiLyftController.getNearbyDrivers);
+app.post('/api/lyft/eta', apiLyftController.getETA);
 
 /* express routing: render */
 app.get('*', function (req, res, next) {
