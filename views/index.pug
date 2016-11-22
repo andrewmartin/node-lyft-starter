@@ -1,48 +1,4 @@
 extends layouts/default
 
 block content
-  .jumbotron.intro
-    h2 Welcome to the Lyft Node Starter Kit
-    p See how to use the <code>node-lyft</code> wrapper by checking out the controller responses and testing calls below.
-  div(id="map")
-  .row
-    .col-md-6
-      .card
-        form(action='/api/lyft/ridetypes').card-block
-          h4.card-title Ride Types
-            a.btn.btn-sm.btn-info(href='https://developer.lyft.com/docs/availability-ride-types' target='_blank') Docs
-          .form-group
-            label Location Start
-            input.form-control(type='text', placeholder='Location Start')#locationBegin
-          .form-group
-            label Location End
-            input.form-control(type='text', placeholder='Location End')#locationEnd
-          .form-group
-            label Ride Type (optional)
-            input.form-control(type='number', placeholder='Longitude')
-          .form-group
-            button(type='submit' class='btn btn-primary') Submit
-          .card.card-response
-            .card-block
-              h6.card-title Response:
-              .card-response__content
-    .col-md-6
-      .card
-        form(action='/api/lyft/ridetypes').card-block
-          h4.card-title Ride Types
-            a.btn.btn-sm.btn-info(href='https://developer.lyft.com/docs/availability-ride-types' target='_blank') Docs
-          .form-group
-            label Latitude
-            input.form-control(type='number', placeholder='Latitude')
-          .form-group
-            label Longitude
-            input.form-control(type='number', placeholder='Longitude')
-          .form-group
-            label Ride Type (optional)
-            input.form-control(type='number', placeholder='Longitude')
-          .form-group
-            button(type='submit' class='btn btn-primary') Submit
-          .card.card-response
-            .card-block
-              h6.card-title Response:
-              .card-response__content
+  #app

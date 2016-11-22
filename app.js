@@ -71,27 +71,11 @@ app.use(function (req, res, next) {
   next();
 });
 
-/* express routing: api */
-// app.get('/api/status', apiController.getStatus);
-// app.get('/api/users',  apiController.getUsers);
-
 /* express routing: lyft api */
-// app.get('/api/lyft/drivers',   apiLyftController.getDrivers);
-// app.get('/api/lyft/cost',      apiLyftController.getCost);
-// app.get('/api/lyft/eta',       apiLyftController.getEta);
-// app.get('/api/lyft/profile',   apiLyftController.getProfile);
-// app.get('/api/lyft/rides',     apiLyftController.getRides);
 app.post('/api/lyft/ridetypes', apiLyftController.getRideTypes);
-// app.get('/api/lyft/ridetypes', apiLyftController.show);
-// app.get('/api/lyft/status',    apiLyftController.getStatus);
-
-/* express routing: lyft oauth */
-// app.all('/oauth/lyft/authorization', oauthLyftController.handleAuthorization);
-// app.all('/oauth/lyft/landing',       oauthLyftController.handleLanding);
-// app.all('/oauth/lyft/revocation',    oauthLyftController.handleRevocation);
 
 /* express routing: render */
-app.get('/', function (req, res, next) {
+app.get('*', function (req, res, next) {
   res.render('index', {
     GOOGLE_API_KEY: config.GOOGLE_API_KEY
   });
@@ -101,7 +85,7 @@ app.get('/', function (req, res, next) {
 app.listen(config.PORT, function () {
   console.log([
     '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
-    'lyft-node-starter-kit running',
+    'lyft-node-web-starter running',
     ' => http://localhost:' + config.PORT,
     ' => [ ctrl + c ] to quit',
     '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'

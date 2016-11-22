@@ -22,6 +22,7 @@ npm-debug.log
 ## Assets
 ################################################
 assets/components
+public/js/bundle*
 
 ################################################
 # Miscellaneous

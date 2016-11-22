@@ -2,8 +2,6 @@ var config = require('../../../config');
 
 module.exports = {
   getRideTypes: function(req, res, next) {
-    // console.log('lyft', lyft);
-    console.log('req.query', req);
     lyft.rideTypes.get(req.body.lat, req.body.lng).then(function(data) {
       res.json(data)
       next();
