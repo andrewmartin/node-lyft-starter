@@ -22,6 +22,7 @@ CONFIG_LYFT_CLIENT_SECRET=YOUR_SECRET
 CONFIG_PORT=8080
 CONFIG_SESSION_SECRET=secret
 CONFIG_USE_SANDBOX=true
+CONFIG_GOOGLE_API_KEY=yourkey
 ```
 
 After registering your application, install dependencies (make sure you have [Bower](https://bower.io) installed):
@@ -47,6 +48,8 @@ This project uses `webpack` and is built using `React` and `Redux`. In order to 
 3. In another, run `webpack --colors --watch --debug`
 
 #### Frontend
+
+The front-end of this app is built using common React and Redux patterns, with a simple root reducer. At this time, the reducer is fairly simple, and was integrated largely to manage the `nearby-drivers` array of pins API response.
 
 The front-end application lives in the `scripts/` directory, with most components found under `scripts/components`. The main entry point for webpack is at `scripts/main.jsx`.
 
