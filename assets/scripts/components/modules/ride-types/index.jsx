@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import ResponseBlock from 'components/modules/response-block';
 
-export default class RideTypes extends Component {
+import callApi from 'services/call-api';
+
+class RideTypes extends Component {
 
   constructor() {
     super();
@@ -28,20 +32,7 @@ export default class RideTypes extends Component {
       lat,
       lng,
     };
-
-    $.ajax({
-      type: 'POST',
-      url: '/api/lyft/ridetypes',
-      data,
-    }).done((response) => {
-      this.setState({
-        response,
-      });
-    }).catch((err) => {
-      this.setState({
-        response: err
-      });
-    });
+    callApi('/api/lyft/ridetypes', data, this);
   }
 
   render() {
@@ -79,7 +70,7 @@ export default class RideTypes extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="location">Ride Type (optional)</label>
+            <label htmlFor="ride_type">Ride Type (optional)</label>
             <input
               className="form-control"
               type="text"
@@ -103,3 +94,5 @@ export default class RideTypes extends Component {
 RideTypes.propTypes = {
   location: PropTypes.object,
 };
+
+export default connect()(RideTypes);

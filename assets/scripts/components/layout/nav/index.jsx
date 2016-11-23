@@ -7,13 +7,13 @@ export default class Nav extends Component {
         <a className="navbar-brand">
           Lyft Node Starter
         </a>
-        <ul className="nav navbar-nav">
+        {/* <ul className="nav navbar-nav">
           <li className="nav-item">
             <a className="nav-link">
               Home
             </a>
           </li>
-        </ul>
+        </ul> */}
       </nav>
     );
   }

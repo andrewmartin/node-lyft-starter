@@ -2,15 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import GoogleMap from 'google-map-react';
+import ReactSpinner from 'react-spinjs';
 
-import Nav from 'components/layout/nav';
-import Main from 'components/layout/main';
-import RideTypes from 'components/modules/ride-types';
 import Cost from 'components/modules/cost';
-import SearchBox from 'components/modules/search-box';
-import NearbyDrivers from 'components/modules/nearby-drivers';
 import ETA from 'components/modules/eta';
-// import TextInput from 'components/modules/text-input';
+import Main from 'components/layout/main';
+import Nav from 'components/layout/nav';
+import NearbyDrivers from 'components/modules/nearby-drivers';
+import Pin from 'components/modules/pin';
+import RideTypes from 'components/modules/ride-types';
+import SearchBox from 'components/modules/search-box';
 
 import LocationActions from 'actions/location';
 
@@ -47,17 +48,21 @@ class Home extends Component {
     dispatch(LocationActions.setCoords(pos.lat, pos.lng));
   }
 
-  updateLocation(e) {
-
-  }
-
-  submitLocation(e) {
-    e.preventDefault();
+  renderSpinner() {
+    return (
+      <div className="spinner">
+        <div className="spinner__inner">
+          <ReactSpinner color="#ff00bf"/>
+        </div>
+      </div>
+    );
   }
 
   render() {
     const {
+      isLoading,
       location,
+      pins,
       zoom,
     } = this.props;
     const center = location;
@@ -66,6 +71,7 @@ class Home extends Component {
       <div className="layout">
         <Nav />
         <Main>
+          {isLoading && this.renderSpinner()}
           <div className="jumbotron intro">
             <h2> Welcome to the Lyft Node Starter Kit</h2>
             <p>See how to use the <code>node-lyft</code> wrapper by checking out the controller responses and testing calls below.</p>
@@ -76,7 +82,9 @@ class Home extends Component {
                 apiKey={window.GOOGLE_API_KEY}
                 center={center}
                 zoom={zoom}
-              />
+              >
+                {pins && pins.map(pin => <Pin key={Math.random() * pin.lat * pin.lng} lat={pin.lat} lng={pin.lng} />)}
+              </GoogleMap>
             </div>
             <div className="">
               <div className="col-md-12">
@@ -106,27 +114,6 @@ class Home extends Component {
                       </label>
                     </div>
                   </div>
-                  {/* <form
-                    className="form-inline"
-                    onSubmit={this.submitLocation.bind(this)}
-                  >
-                    <label>
-                      Latitude:
-                    </label>
-                    <input
-                      onKeyUp={this.updateLocation.bind('latitude', this)}
-                      type="text"
-                      className="form-control"
-                    />
-                    <label>
-                      Longitude:
-                    </label>
-                    <input
-                      onKeyUp={this.updateLocation.bind('longitude', this)}
-                      type="text"
-                      className="form-control"
-                    />
-                  </form> */}
                 </div>
               </div>
             </div>
@@ -163,13 +150,16 @@ class Home extends Component {
 
 Home.propTypes = {
   dispatch: PropTypes.func,
+  isLoading: PropTypes.bool,
+  pins: PropTypes.array,
   zoom: PropTypes.number,
   location: PropTypes.object,
 };
 
 Home.defaultProps = {
   dispatch: () => {},
-  zoom: 9,
+  isLoading: false,
+  zoom: 15,
   location: {
     lat: 37.774929,
     lng: -122.419416,
@@ -178,9 +168,11 @@ Home.defaultProps = {
 
 function mapStateToProps(state) {
   return {
+    isLoading: state.global.isLoading,
     location: state.location,
     lat: state.location.lat,
     lng: state.location.lng,
+    pins: state.pins.pins,
   };
 }
 

@@ -35,7 +35,7 @@ export default class ResponseBlock extends Component {
       <div className="card-response">
         <h6
           className="card-response__title">
-          Response:
+          Response
           <a
             onClick={this.setExpanded.bind(this)}
             className="card-response__button">

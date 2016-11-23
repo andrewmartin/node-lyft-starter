@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import ResponseBlock from 'components/modules/response-block';
 
-export default class Cost extends Component {
+import callApi from 'services/call-api';
+
+class Cost extends Component {
 
   constructor() {
     super();
@@ -20,27 +24,14 @@ export default class Cost extends Component {
     const {
       location: {
         lat,
-        lng
+        lng,
       },
     } = this.props;
     const data = {
       start_lat: lat,
       start_lng: lng,
     };
-
-    $.ajax({
-      type: 'POST',
-      url: '/api/lyft/cost',
-      data,
-    }).done((response) => {
-      this.setState({
-        response,
-      });
-    }).catch((err) => {
-      this.setState({
-        response: err
-      });
-    });
+    callApi('/api/lyft/cost', data, this);
   }
 
   render() {
@@ -60,7 +51,7 @@ export default class Cost extends Component {
             </a>
           </h3>
           <div className="form-group">
-            <label htmlFor="location">Latitude</label>
+            <label htmlFor="location">Start Latitude</label>
             <input
               className="form-control"
               placeholder={this.props.location.lat}
@@ -69,7 +60,7 @@ export default class Cost extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="location">Longitude</label>
+            <label htmlFor="location">Start Longitude</label>
             <input
               className="form-control"
               placeholder={this.props.location.lng}
@@ -78,7 +69,25 @@ export default class Cost extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="location">Ride Type (optional)</label>
+            <label htmlFor="ride_type">End Latitude (optional)</label>
+            <input
+              className="form-control"
+              type="text"
+              placeholder="the destination latitude"
+              onChange={this.onInputChange.bind(this, 'end_lat')}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="ride_type">End Longitude (optional)</label>
+            <input
+              className="form-control"
+              type="text"
+              placeholder="the destination longitude"
+              onChange={this.onInputChange.bind(this, 'end_lng')}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="ride_type">Ride Type (optional)</label>
             <input
               className="form-control"
               type="text"
@@ -102,3 +111,5 @@ export default class Cost extends Component {
 Cost.propTypes = {
   location: PropTypes.object,
 };
+
+export default connect()(Cost);

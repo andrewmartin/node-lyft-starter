@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import ResponseBlock from 'components/modules/response-block';
 
-export default class ETA extends Component {
+import callApi from 'services/call-api';
+
+class ETA extends Component {
 
   constructor() {
     super();
@@ -27,20 +31,7 @@ export default class ETA extends Component {
       lat,
       lng,
     };
-
-    $.ajax({
-      type: 'POST',
-      url: '/api/lyft/eta',
-      data,
-    }).done((response) => {
-      this.setState({
-        response,
-      });
-    }).catch((err) => {
-      this.setState({
-        response: err
-      });
-    });
+    callApi('/api/lyft/eta', data, this);
   }
 
   render() {
@@ -52,7 +43,7 @@ export default class ETA extends Component {
           <h3 className="api-module__title">
             ETA
             <a
-              href="https://developer.lyft.com/docs/cost"
+              href="https://developer.lyft.com/docs/availability-etas"
               target="_blank"
               className="api-module__button"
             >
@@ -60,7 +51,7 @@ export default class ETA extends Component {
             </a>
           </h3>
           <div className="form-group">
-            <label htmlFor="location">Latitude</label>
+            <label htmlFor="location">Start Latitude</label>
             <input
               className="form-control"
               placeholder={this.props.location.lat}
@@ -69,7 +60,7 @@ export default class ETA extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="location">Longitude</label>
+            <label htmlFor="location">Start Longitude</label>
             <input
               className="form-control"
               placeholder={this.props.location.lng}
@@ -78,7 +69,7 @@ export default class ETA extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="location">Ride Type (optional)</label>
+            <label htmlFor="ride_type">Ride Type (optional)</label>
             <input
               className="form-control"
               type="text"
@@ -102,3 +93,5 @@ export default class ETA extends Component {
 ETA.propTypes = {
   location: PropTypes.object,
 };
+
+export default connect()(ETA);

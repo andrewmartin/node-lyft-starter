@@ -1,7 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
+import PinActions from 'actions/pins';
 import ResponseBlock from 'components/modules/response-block';
 
-export default class NearbyDrivers extends Component {
+import callApi from 'services/call-api';
+
+class NearbyDrivers extends Component {
 
   constructor() {
     super();
@@ -13,6 +18,23 @@ export default class NearbyDrivers extends Component {
     this.setState({
       [inputName]: event.target.value,
     });
+  }
+
+  sendPins(response) {
+    const {
+      dispatch
+    } = this.props;
+    let driverPins = [];
+
+    response.nearby_drivers.forEach((driverGroup) => {
+      driverGroup.drivers.forEach((driverLocations) => {
+        driverLocations.locations.forEach((location) => {
+          driverPins.push(location);
+        });
+      });
+    });
+    dispatch(PinActions.setPins(driverPins));
+    window.scrollTo(0,0);
   }
 
   onSubmit(e) {
@@ -27,20 +49,7 @@ export default class NearbyDrivers extends Component {
       lat,
       lng,
     };
-
-    $.ajax({
-      type: 'POST',
-      url: '/api/lyft/nearby-drivers',
-      data,
-    }).done((response) => {
-      this.setState({
-        response,
-      });
-    }).catch((err) => {
-      this.setState({
-        response: err
-      });
-    });
+    callApi('/api/lyft/nearby-drivers', data, this, this.sendPins.bind(this));
   }
 
   render() {
@@ -78,15 +87,6 @@ export default class NearbyDrivers extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="location">Ride Type (optional)</label>
-            <input
-              className="form-control"
-              type="text"
-              placeholder="lyft, lyft_line, or lyft_plus"
-              onChange={this.onInputChange.bind(this, 'ride_type')}
-            />
-          </div>
-          <div className="form-group">
             <button className="btn btn-primary" type="submit">
               Submit
             </button>
@@ -102,3 +102,5 @@ export default class NearbyDrivers extends Component {
 NearbyDrivers.propTypes = {
   location: PropTypes.object,
 };
+
+export default connect()(NearbyDrivers);

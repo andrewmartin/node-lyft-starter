@@ -6731,6 +6731,7 @@ nav.navbar a {
 
 .card-response__title {
   margin-bottom: 15px;
+  line-height: 27px;
 }
 
 .card-response__button {
@@ -6747,7 +6748,7 @@ nav.navbar a {
 #map,
 .map {
   width: 100%;
-  height: 300px;
+  height: 500px;
   margin-bottom: 2rem;
   overflow: hidden;
 }
@@ -6760,6 +6761,7 @@ nav.navbar a {
 }
 
 .api-module {
+  border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
   background: #f7f7f9;
@@ -6773,6 +6775,10 @@ nav.navbar a {
   float: right;
 }
 
+.api-module form .form-group:last-child {
+  margin-bottom: 0;
+}
+
 .form-inline__meta {
   padding-bottom: 15px;
 }
@@ -6782,4 +6788,35 @@ nav.navbar a {
   margin: 0 5px;
   padding: 5px;
   background: #eceeef;
+}
+
+.pin {
+  position: absolute;
+  text-indent: -9999px;
+  display: block;
+  background: transparent url(https://s3.amazonaws.com/api.lyft.com/assets/car_standard.png) no-repeat scroll top left;
+  background-size: 35px 28px;
+  width: 35px;
+  height: 28px;
+}
+
+.spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.spinner__inner {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.spinner__inner span {
+  display: inline-block;
 }

@@ -23,10 +23,11 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss', '.css', '.json'],
     alias: {
-      scripts: path.join(__dirname, '/assets/scripts'),
+      actions: path.join(__dirname, '/assets/scripts/redux/actions'),
       components: path.join(__dirname, '/assets/scripts/components'),
       reducers: path.join(__dirname, '/assets/scripts/redux/reducers'),
-      actions: path.join(__dirname, '/assets/scripts/redux/actions'),
+      scripts: path.join(__dirname, '/assets/scripts'),
+      services: path.join(__dirname, '/assets/scripts/services'),
     },
   },
 };
