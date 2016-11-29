@@ -1,7 +1,7 @@
 [`node-lyft`](http://github.com/andrewmartin/node-lyft) + Express Starter
 =========
 
-![Demo](https://media.giphy.com/media/3o7TKvPUPfkAQHhbOg/source.gif?raw=true)
+![Demo](https://cloud.githubusercontent.com/assets/273842/20698543/958cdf68-b5b6-11e6-8277-fe01c78c9986.gif)
 
 This is a WIP sample project written in node for the [`node-lyft`](http://github.com/andrewmartin/node-lyft) wrapper, which facilitates calls to the [Lyft](https://www.lyft.com/developers) API. It shows a simple way to integrate the wrapper with a basic Express app.
 
